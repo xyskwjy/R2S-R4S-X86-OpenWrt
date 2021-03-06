@@ -289,6 +289,8 @@ cp -f ../PATCH/new/script/fuck package/base-files/files/usr/bin/fuck
 cp -f ../PATCH/new/script/chinadnslist package/base-files/files/usr/bin/chinadnslist
 #最大连接
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+# 修改openwrt登陆地址,把下面的192.168.2.2修改成你想要的就可以了，其他的不要动
+sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
 #修改启动等待（可能无效）
 sed -i 's/default "5"/default "0"/g' config/Config-images.in
 #生成默认配置及缓存
