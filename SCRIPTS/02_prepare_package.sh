@@ -91,6 +91,12 @@ svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-yarn feeds/pac
 ln -sf ../../../feeds/packages/lang/node-yarn ./package/feeds/packages/node-yarn
 #luci-app-freq
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/luci-app-cpufreq package/lean/luci-app-cpufreq
+#Eqos
+git clone --depth 1 https://github.com/garypang13/luci-app-eqos.git package/new/luci-app-eqos
+#filebrowser
+git clone -b 18.06 --depth 1 https://github.com/xiaozhuai/luci-app-filebrowser package/new/luci-app-filebrowser
+#关机
+git clone --depth 1 https://github.com/esirplayground/luci-app-poweroff.git package/new/luci-app-poweroff
 #京东签到
 git clone --depth 1 https://github.com/jerrykuku/node-request.git package/new/node-request
 git clone --depth 1 https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/new/luci-app-jd-dailybonus
@@ -280,6 +286,8 @@ sed -i 's/+docker/+docker \\\n\t+dockerd/g' ./feeds/luci/applications/luci-app-d
 mkdir package/base-files/files/usr/bin
 cp -f ../PATCH/new/script/fuck package/base-files/files/usr/bin/fuck
 cp -f ../PATCH/new/script/chinadnslist package/base-files/files/usr/bin/chinadnslist
+# 修改openwrt登陆地址,把下面的192.168.2.2修改成你想要的就可以了，其他的不要动
+sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
 #最大连接
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 #修改启动等待（可能无效）
